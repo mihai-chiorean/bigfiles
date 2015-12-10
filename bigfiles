@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if [ $# -lt 2 ]; then
+   echo "use \n $0 <size> <path>"
+fi
+
+echo "Searching files greater than $1 MB in $2..."
+filterstring=$(printf "\$1 > %s" "$1")
+
+du -m $2 | awk "$filterstring"
